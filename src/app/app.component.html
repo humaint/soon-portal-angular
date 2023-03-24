@@ -1,4 +1,4 @@
-<div class="fixed top-0 z-50 w-full px-4 pt-5 lg:px-8 lg:pt-8">
+<div class="fixed top-0 z-40 w-full px-4 pt-5 lg:px-8 lg:pt-8">
   <div class="flex items-center justify-between h-full mx-auto border-b border-black border-opacity-0 max-w-screen-2xl">
     <div class="flex-shrink-[5] mr-2">
       <img class="max-h-6"
@@ -13,9 +13,10 @@
         </li>
       </ul>
     </div>
-    <div class="z-50 lg:hidden"></div>
   </div>
 </div>
 <div class="min-h-screen text-black duration-300 bg-white">
   <router-outlet></router-outlet>
 </div>
+<!-- backdrop for modal -->
+<div class="z-40"></div>

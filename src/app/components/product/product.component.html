@@ -1,13 +1,12 @@
 <a
-  class="relative text-sm duration-300 cursor-pointer group fade-in lg:-20"
-  (click)="goToSoonaverseNft()"
+  class="relative text-sm duration-300 cursor-pointer group fade-in lg:-20" (click)="toggleModal()"
 >
   <div
     class="w-full relative fade-in lg:group-hover:scale-[1.01] duration-300 rounded-xl aspect-w-1 aspect-h-1 overflow-hidden bg-gray-100"
     style="aspect-ratio: 1/1"
   >
-    <div class="absolute z-50 w-full h-full bg-white opacity-0"></div>
-    <div class="absolute z-50 w-full h-full bg-white opacity-0 animate-flash-once"></div>
+    <div class="absolute z-30 w-full h-full bg-white opacity-0"></div>
+    <div class="absolute z-30 w-full h-full bg-white opacity-0 animate-flash-once"></div>
     <img
       class="absolute object-cover object-center w-full h-full duration-300"
       [src]="medSizeImg(nft?.media)"
@@ -22,47 +21,45 @@
   </h3>
 </a>
 
-<!-- <div
-  class="max-w-sm px-6 pt-6 pb-2 transition duration-500 transform bg-white shadow-lg rounded-xl hover:scale-105"
->
-  <h3 class="mb-3 text-xl font-bold text-indigo-600">{{ nft?.name }}</h3>
-  <div class="relative">
-    <img class="w-full rounded-xl" [src]="medSizeImg(nft?.media)" alt="Colors" />
-    <p
-      class="absolute top-0 px-3 py-1 font-semibold text-gray-800 bg-yellow-300 rounded-tl-lg rounded-br-lg"
-    >
-      {{ nft?.availablePrice | unitFormat : nft?.mintingData?.network }}
-    </p>
-  </div>
-  <h1 class="mt-4 text-sm font-bold text-gray-800 cursor-pointer">{{ nft?.description }}</h1>
-  <div class="my-4">
-    <div class="flex items-center space-x-1">
-      <span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6 text-indigo-600 mb-1.5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
-      </span>
-      <p>
-        {{ nft?.totalTrades }} <span *ngIf="nft?.totalTrades === 1">trade</span
-        ><span *ngIf="(nft?.totalTrades || 0) > 1">trades</span>
-      </p>
+<div *ngIf="showModal" class="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
+  <div class="relative w-auto max-w-3xl mx-auto my-6">
+    <!--content-->
+    <div class="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
+      <!--header-->
+      <div class="flex items-start justify-between p-5 border-b border-solid rounded-t border-slate-200">
+        <h3 class="text-3xl font-semibold">
+          {{ nft?.name }}
+        </h3>
+        <button class="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black bg-transparent border-0 outline-none opacity-5 focus:outline-none" (click)="toggleModal()">
+          <span class="block w-6 h-6 text-2xl text-black bg-transparent outline-none opacity-5 focus:outline-none">
+            ×
+          </span>
+        </button>
+      </div>
+      <!--body-->
+      <div class="relative flex-auto p-6">
+        <img class="w-full rounded-xl" [src]="medSizeImg(nft?.media)" alt="Colors" />
+        <p class="my-4 text-lg leading-relaxed text-slate-500">
+          {{ nft?.description }}
+        </p>
+        <p class="my-4 text-lg leading-relaxed text-slate-500">
+          {{ nft?.availablePrice | unitFormat : nft?.mintingData?.network }}
+        </p>
+        <p class="my-4 text-lg leading-relaxed text-slate-500">
+          {{ nft?.totalTrades }} <span *ngIf="nft?.totalTrades === 1">trade</span
+          ><span *ngIf="(nft?.totalTrades || 0) > 1">trades</span>
+        </p>
+      </div>
+      <!--footer-->
+      <div class="flex items-center justify-end p-6 border-t border-solid rounded-b border-slate-200">
+        <button class="px-6 py-2 mb-1 mr-1 text-sm font-bold text-red-500 uppercase transition-all duration-150 ease-linear outline-none background-transparent focus:outline-none" type="button" (click)="toggleModal()">
+          Close
+        </button>
+        <button class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear rounded shadow outline-none bg-emerald-500 active:bg-emerald-600 hover:shadow-lg focus:outline-none" type="button" (click)="goToSoonaverseNft()">
+          Go to Soonaverse
+        </button>
+      </div>
     </div>
-    <button
-      class="w-full py-2 mt-4 text-xl text-white bg-indigo-600 shadow-lg rounded-xl"
-      (click)="goToSoonaverseNft()"
-    >
-      Buy Now
-    </button>
   </div>
-</div> -->
+</div>
+<div *ngIf="showModal" class="fixed inset-0 z-40 bg-black opacity-25"></div>

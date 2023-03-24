@@ -8,6 +8,8 @@ import { FILE_SIZES, Nft } from '@soonaverse/interfaces';
 })
 export class ProductComponent {
   @Input() nft: Nft | undefined;
+  showModal = false;
+
   public getUrl(org: string, size?: FILE_SIZES): string {
     const extensionPat = /\.[^/.]+$/;
     const ext = org.match(extensionPat)?.[0]?.replace('.', '_');
@@ -22,5 +24,9 @@ export class ProductComponent {
 
   public goToSoonaverseNft(): void {
     window.open('https://soonaverse.com/nft/' + this.nft?.uid);
+  }
+
+  public toggleModal(){
+    this.showModal = !this.showModal;
   }
 }
